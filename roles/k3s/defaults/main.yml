@@ -1,0 +1,34 @@
+---
+# defaults file for k3s
+
+k3s_binary_version: v1.26.0+k3s1
+
+extra_server_args:
+extra_agent_args:
+k3s_node_name: "{{ inventory_hostname }}"
+k3s_mode: master
+k3s_token: "{{ hostvars[groups['master'][0]]['token'] }}"
+k3s_master_ip: "{{ hostvars[groups['master'][0]]['ansible_host'] | default(groups['master'][0]) }}"
+
+k3s_service_name: k3s.service
+k3s_service_state: started
+k3s_service_enabled: true
+
+k3s_package_state: present
+k3s_package:
+  - container-selinux
+  - selinux-policy-base
+
+k3s_package_url: https://github.com/k3s-io/k3s/releases/download/{{ k3s_binary_version }}/k3s
+k3s_package_checksum: sha256:https://github.com/k3s-io/k3s/releases/download/{{ k3s_binary_version }}/sha256sum-amd64.txt
+
+k3s_symlink:
+  - src: /usr/local/bin/k3s
+    dest: /usr/local/bin/kubectl
+  - src: /usr/local/bin/k3s
+    dest: /usr/local/bin/crictl
+  - src: /usr/local/bin/k3s
+    dest: /usr/local/bin/ctr
+
+k3s_selinux_package_state: present
+k3s_selinux_package: https://github.com/k3s-io/k3s-selinux/releases/download/v1.2.stable.2/k3s-selinux-1.2-2.el8.noarch.rpm

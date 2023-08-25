@@ -1,0 +1,15 @@
+---
+# tasks file for k3s
+
+- name: Import Common Task
+  ansible.builtin.import_tasks: common.yml
+
+- name: Import Master Task
+  ansible.builtin.import_tasks: master.yml
+  when:
+    - k3s_mode == 'master'
+
+- name: Import Node Task
+  ansible.builtin.import_tasks: node.yml
+  when:
+    - k3s_mode == 'node'

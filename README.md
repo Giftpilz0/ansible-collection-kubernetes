@@ -1,3 +1,5 @@
+![Ansible-Lint](https://github.com/giftpilz0/ansible-collection-kubernetes/actions/workflows/ci.yml/badge.svg)
+
 # Ansible Collection - giftpilz0.kubernetes
 
 ______________________________________________________________________

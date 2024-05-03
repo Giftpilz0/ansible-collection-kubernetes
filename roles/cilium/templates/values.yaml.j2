@@ -1,0 +1,20 @@
+---
+kubeProxyReplacement: true
+l2announcements:
+  enabled: true
+gatewayAPI:
+  enabled: true
+hubble:
+  enabled: true
+  relay:
+    enabled: true
+    rollOutPods: true
+  ui:
+    enabled: true
+    rollOutPods: true
+k8sClientRateLimit:
+  qps: 50
+  burst: 200
+rollOutCiliumPods: true
+operator:
+  rollOutPods: true

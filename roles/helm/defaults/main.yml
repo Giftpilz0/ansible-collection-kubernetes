@@ -1,0 +1,8 @@
+---
+# defaults file for helm
+
+helm_bin_state: present
+helm_url: https://github.com/helm/helm/releases/download/v{{ helm_tag }}/helm-v{{ helm_tag }}-linux-{{ helm_arch }}.tar.gz
+helm_arch: amd64
+helm_tag: 3.14.4
+helm_path: /usr/local/bin

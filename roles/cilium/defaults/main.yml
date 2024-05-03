@@ -1,0 +1,5 @@
+---
+# defaults file for cilium
+
+cilium_version: 1.15.4
+cilium_repo_url: https://helm.cilium.io

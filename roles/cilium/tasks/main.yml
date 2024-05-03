@@ -1,0 +1,25 @@
+---
+# tasks file for cilium
+
+######################################
+### jobs
+
+- name: "Cilium: Install Helm"
+  ansible.builtin.include_role:
+    name: giftpilz0.kubernetes.helm
+  vars:
+    helm_arch: amd64
+    helm_tag: 3.14.4
+
+- name: "Cilium: Add chart repo"
+  kubernetes.core.helm_repository:
+    name: cilium
+    repo_url: "{{ cilium_repo_url }}"
+
+- name: "Cilium: Deploy Cilium chart"
+  kubernetes.core.helm:
+    name: cilium
+    chart_version: "{{ cilium_version }}"
+    chart_ref: cilium/cilium
+    release_namespace: kube-system
+    values: "{{ lookup('template', 'values.yaml') | from_yaml }}"

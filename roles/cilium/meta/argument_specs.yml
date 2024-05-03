@@ -1,0 +1,15 @@
+---
+argument_specs:
+  # main.yml entry point
+  main:
+    short_description: The main entry point for the cilium role.
+    options:
+      cilium_version:
+        type: str
+        required: false
+        description: cilium_version
+
+      cilium_repo_url:
+        type: str
+        required: false
+        description: cilium_version

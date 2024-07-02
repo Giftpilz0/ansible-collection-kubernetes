@@ -13,5 +13,5 @@ k3s_service_name: k3s.service
 k3s_service_state: started
 k3s_service_enabled: true
 
-k3s_kube_vip_tag: v0.6.4
+k3s_kube_vip_tag: v0.8.1
 k3s_kube_vip_iface: enp6s18

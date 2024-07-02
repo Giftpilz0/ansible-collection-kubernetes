@@ -161,7 +161,7 @@
       become: true
       ansible.builtin.command:
         cmd: >
-          k3s kubectl get nodes -l "node-role.kubernetes.io/control-plane=true" -o=jsonpath="{.items[*].metadata.name}"
+          /usr/local/bin/k3s kubectl get nodes -l "node-role.kubernetes.io/control-plane=true" -o=jsonpath="{.items[*].metadata.name}"
       register: nodes
       until: nodes.rc == 0 and (nodes.stdout.split() | length) == (groups['k3s'] | length)
       retries: 10

@@ -26,6 +26,7 @@
     remote_src: true
     extra_opts:
       - --add-file
-      - helm
+      - linux-{{ helm_arch }}/helm
+      - --strip-components=1
   when:
     - helm_bin_state != 'skip'

@@ -3,3 +3,4 @@
 
 cilium_version: 1.15.6
 cilium_repo_url: https://helm.cilium.io
+cilium_kubeconfig: /etc/rancher/k3s/k3s.yaml

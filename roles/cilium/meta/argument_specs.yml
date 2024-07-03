@@ -13,3 +13,8 @@ argument_specs:
         type: str
         required: false
         description: cilium_version
+
+      cilium_kubeconfig:
+        type: str
+        required: false
+        description: cilium_kubeconfig

@@ -17,9 +17,11 @@
     repo_url: "{{ cilium_repo_url }}"
 
 - name: "Cilium: Deploy Cilium chart"
+  become: true
   kubernetes.core.helm:
     name: cilium
     chart_version: "{{ cilium_version }}"
     chart_ref: cilium/cilium
     release_namespace: kube-system
-    values: "{{ lookup('template', 'values.yaml') | from_yaml }}"
+    values: "{{ lookup('template', 'values.yaml.j2') | from_yaml }}"
+    kubeconfig: "{{ cilium_kubeconfig }}"

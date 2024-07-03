@@ -1,6 +1,9 @@
 ---
 # tasks file for K3s
 
+######################################
+### prereq
+
 - name: "K3s: Manage kernel modules"
   become: true
   ansible.builtin.copy:
@@ -84,6 +87,9 @@
     group: root
     mode: "0644"
 
+######################################
+### initialize cluster
+
 - name: "K3s: Init first server node"
   become: true
   when: inventory_hostname == groups['k3s'][0]
@@ -117,7 +123,7 @@
         group: root
         mode: "0644"
 
-    - name: "K3s: Copy vip manifest to first master"
+    - name: "K3s: Copy kube-vip manifest to first master"
       become: true
       ansible.builtin.template:
         src: vip.yaml.j2
@@ -125,6 +131,12 @@
         owner: root
         group: root
         mode: "0644"
+
+    - name: "K3s: Install cilium"
+      ansible.builtin.include_role:
+        name: giftpilz0.kubernetes.cilium
+      vars:
+        cilium_version: 1.15.6
 
     - name: "K3s: Restart K3s service"
       become: true
@@ -135,6 +147,9 @@
     - name: "K3s: Pause to allow server startup"
       ansible.builtin.pause:
         seconds: 10
+
+######################################
+### join nodes
 
 - name: "K3s: Start other server if any and verify status"
   when:
@@ -167,6 +182,9 @@
       retries: 10
       delay: 10
       changed_when: false
+
+######################################
+### kubeconfig
 
 - name: "K3s: Setup kubectl for user"
   block:

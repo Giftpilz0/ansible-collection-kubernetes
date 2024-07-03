@@ -9,7 +9,7 @@
     name: giftpilz0.kubernetes.helm
   vars:
     helm_arch: amd64
-    helm_tag: 3.14.4
+    helm_tag: 3.15.2
 
 - name: "Cilium: Add chart repo"
   kubernetes.core.helm_repository:

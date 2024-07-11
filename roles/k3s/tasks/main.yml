@@ -87,6 +87,24 @@
     group: root
     mode: "0644"
 
+- name: "K3s: Install helm"
+  ansible.builtin.include_role:
+    name: giftpilz0.kubernetes.helm
+  vars:
+    helm_tag: 3.15.2
+
+- name: "K3s: Install fluxcli"
+  ansible.builtin.include_role:
+    name: giftpilz0.kubernetes.fluxcli
+  vars:
+    fluxcli_tag: 0.32.5
+
+- name: "K3s: Install k9s"
+  ansible.builtin.include_role:
+    name: giftpilz0.kubernetes.k9s
+  vars:
+    k9s_tag: 0.32.5
+
 ######################################
 ### initialize cluster
 

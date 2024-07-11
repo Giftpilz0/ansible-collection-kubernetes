@@ -112,6 +112,24 @@
   become: true
   when: inventory_hostname == groups['k3s'][0]
   block:
+    - name: "K3s: Download kube-vip manifest"
+      become: true
+      ansible.builtin.get_url:
+        url: https://kube-vip.io/manifests/rbac.yaml
+        dest: /var/lib/rancher/k3s/server/manifests/kube-vip-rbac.yaml
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: "K3s: Copy kube-vip manifest to first master"
+      become: true
+      ansible.builtin.template:
+        src: vip.yaml.j2
+        dest: /var/lib/rancher/k3s/server/manifests/kube-vip.yaml
+        owner: root
+        group: root
+        mode: "0644"
+
     - name: "K3s: Copy K3s service"
       ansible.builtin.template:
         src: k3s-cluster-init.service.j2
@@ -131,24 +149,6 @@
     - name: "K3s: Pause to allow server startup"
       ansible.builtin.pause:
         seconds: 10
-
-    - name: "K3s: Download kube-vip manifest"
-      become: true
-      ansible.builtin.get_url:
-        url: https://kube-vip.io/manifests/rbac.yaml
-        dest: /var/lib/rancher/k3s/server/manifests/kube-vip-rbac.yaml
-        owner: root
-        group: root
-        mode: "0644"
-
-    - name: "K3s: Copy kube-vip manifest to first master"
-      become: true
-      ansible.builtin.template:
-        src: vip.yaml.j2
-        dest: /var/lib/rancher/k3s/server/manifests/kube-vip.yaml
-        owner: root
-        group: root
-        mode: "0644"
 
     - name: "K3s: Install cilium"
       ansible.builtin.include_role:

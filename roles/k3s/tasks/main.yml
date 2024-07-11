@@ -97,7 +97,7 @@
   ansible.builtin.include_role:
     name: giftpilz0.kubernetes.fluxcli
   vars:
-    fluxcli_tag: 0.32.5
+    fluxcli_tag: 2.3.0
 
 - name: "K3s: Install k9s"
   ansible.builtin.include_role:

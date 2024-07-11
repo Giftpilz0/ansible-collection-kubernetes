@@ -27,6 +27,5 @@
     extra_opts:
       - --add-file
       - k9s
-      - --strip-components=1
   when:
     - k9s_bin_state != 'skip'

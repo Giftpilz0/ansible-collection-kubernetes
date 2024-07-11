@@ -27,6 +27,5 @@
     extra_opts:
       - --add-file
       - flux
-      - --strip-components=1
   when:
     - fluxcli_bin_state != 'skip'

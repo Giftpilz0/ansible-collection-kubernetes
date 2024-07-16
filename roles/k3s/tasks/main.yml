@@ -111,6 +111,10 @@
         protocol: tcp
         zone: "{{ k3s_firewalld_zone }}"
         state: "{{ k3s_firewalld_state }}"
+      - port: 4244
+        protocol: tcp
+        zone: "{{ k3s_firewalld_zone }}"
+        state: "{{ k3s_firewalld_state }}"
   when:
     - "'firewalld' in ansible_facts.packages"
     - k3s_firewalld_state != 'skip'

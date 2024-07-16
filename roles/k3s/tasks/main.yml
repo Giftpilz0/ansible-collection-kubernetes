@@ -4,6 +4,10 @@
 ######################################
 ### prereq
 
+- name: "K3s: Gather package facts"
+  ansible.builtin.package_facts:
+    manager: auto
+
 - name: "K3s: Manage kernel modules"
   become: true
   ansible.builtin.copy:
@@ -86,6 +90,30 @@
     owner: root
     group: root
     mode: "0644"
+
+- name: "K3s: Manage firewall"
+  ansible.builtin.include_role:
+    name: giftpilz0.general.firewalld
+  vars:
+    firewalld_rules_services:
+      - service: kubelet
+        zone: kubernetes
+        state: enabled
+      - service: kube-control-plane
+        zone: kubernetes
+        state: enabled
+    firewalld_rules_ports:
+      - port: 8472
+        protocol: udp
+        zone: kubernetes
+        state: enabled
+      - port: 4240
+        protocol: tcp
+        zone: kubernetes
+        state: enabled
+  when:
+    - "'firewalld' in ansible_facts.packages"
+    - k3s_firewalld_state != 'skip'
 
 - name: "K3s: Install helm"
   ansible.builtin.include_role:

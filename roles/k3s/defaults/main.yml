@@ -15,3 +15,6 @@ k3s_service_enabled: true
 
 k3s_kube_vip_tag: v0.8.1
 k3s_kube_vip_iface: enp6s18
+
+k3s_firewalld_state: enabled
+k3s_firewalld_zone: kubernetes

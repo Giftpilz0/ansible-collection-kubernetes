@@ -97,20 +97,20 @@
   vars:
     firewalld_rules_services:
       - service: kubelet
-        zone: kubernetes
-        state: enabled
+        zone: "{{ k3s_firewalld_zone }}"
+        state: "{{ k3s_firewalld_state }}"
       - service: kube-control-plane
-        zone: kubernetes
-        state: enabled
+        zone: "{{ k3s_firewalld_zone }}"
+        state: "{{ k3s_firewalld_state }}"
     firewalld_rules_ports:
       - port: 8472
         protocol: udp
-        zone: kubernetes
-        state: enabled
+        zone: "{{ k3s_firewalld_zone }}"
+        state: "{{ k3s_firewalld_state }}"
       - port: 4240
         protocol: tcp
-        zone: kubernetes
-        state: enabled
+        zone: "{{ k3s_firewalld_zone }}"
+        state: "{{ k3s_firewalld_state }}"
   when:
     - "'firewalld' in ansible_facts.packages"
     - k3s_firewalld_state != 'skip'

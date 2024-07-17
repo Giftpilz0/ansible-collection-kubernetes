@@ -12,8 +12,12 @@ authors:
   - Moritz Schmidt <schmidtmoritz404@gmail.com>
 
 tags:
+  - cilium
+  - flux
+  - helm
   - linux
   - k3s
+  - k9s
   - kubernetes
 
 dependencies:

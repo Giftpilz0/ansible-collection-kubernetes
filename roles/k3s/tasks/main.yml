@@ -119,6 +119,9 @@
         protocol: tcp
         zone: "{{ k3s_firewalld_zone }}"
         state: "{{ k3s_firewalld_state }}"
+    firewalld_zones_define:
+      - zone: trusted
+        source: 10.0.0.0/8
   when:
     - "'firewalld' in ansible_facts.packages"
     - k3s_firewalld_state != 'skip'

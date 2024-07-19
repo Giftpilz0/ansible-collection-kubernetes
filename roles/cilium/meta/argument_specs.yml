@@ -19,6 +19,11 @@ argument_specs:
         required: false
         description: cilium_kubeconfig
 
+      cilium_config_kubeproxyreplacement:
+        type: bool
+        required: false
+        description: cilium_config_kubeproxyreplacement
+
       cilium_config_k8sclientratelimit_qps:
         type: int
         required: false

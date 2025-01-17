@@ -18,3 +18,8 @@ k3s_kube_vip_iface: enp6s18
 
 k3s_firewalld_state: enabled
 k3s_firewalld_zone: kubernetes
+
+k9s_tag: 0.32.7
+fluxcli_tag: 2.4.0
+helm_tag: 3.17.0
+cilium_version: 1.16.5

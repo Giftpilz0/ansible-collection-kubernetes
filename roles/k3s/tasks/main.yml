@@ -103,33 +103,27 @@
         zone: "{{ k3s_firewalld_zone }}"
         state: "{{ k3s_firewalld_state }}"
     firewalld_rules_ports:
-      - port: 8472
+      - port: 8472 # cilium VXLAN
         protocol: udp
         zone: "{{ k3s_firewalld_zone }}"
         state: "{{ k3s_firewalld_state }}"
-      - port: 4240
+      - port: 4240 # cilium-health
         protocol: tcp
         zone: "{{ k3s_firewalld_zone }}"
         state: "{{ k3s_firewalld_state }}"
-      - port: 4244
+      - port: 4244 # hubble server
         protocol: tcp
         zone: "{{ k3s_firewalld_zone }}"
         state: "{{ k3s_firewalld_state }}"
-      - port: 4245
-        protocol: tcp
-        zone: "{{ k3s_firewalld_zone }}"
-        state: "{{ k3s_firewalld_state }}"
-      - port: 2379
-        protocol: tcp
-        zone: "{{ k3s_firewalld_zone }}"
-        state: "{{ k3s_firewalld_state }}"
-      - port: 2380
+      - port: 4245 # hubble relay
         protocol: tcp
         zone: "{{ k3s_firewalld_zone }}"
         state: "{{ k3s_firewalld_state }}"
     firewalld_zones_define:
       - zone: trusted
-        source: 10.0.0.0/8
+        source: "{{ k3s_service_cidr }}"
+      - zone: trusted
+        source: "{{ k3s_cluster_cidr }}"
   when:
     - "'firewalld' in ansible_facts.packages"
     - k3s_firewalld_state != 'skip'

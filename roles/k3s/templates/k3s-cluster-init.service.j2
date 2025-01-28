@@ -12,6 +12,11 @@ Type=notify
 EnvironmentFile=-/etc/default/%N
 EnvironmentFile=-/etc/sysconfig/%N
 EnvironmentFile=-/etc/systemd/system/k3s.service.env
+{% if k3s_proxy_env is defined %}
+Environment=HTTP_PROXY={{ k3s_proxy_env.HTTP_PROXY }}
+Environment=HTTPS_PROXY={{ k3s_proxy_env.HTTPS_PROXY }}
+Environment=NO_PROXY={{ k3s_proxy_env.NO_PROXY }}
+{% endif %}
 KillMode=process
 Delegate=yes
 # Having non-zero Limit*s causes performance problems due to accounting overhead

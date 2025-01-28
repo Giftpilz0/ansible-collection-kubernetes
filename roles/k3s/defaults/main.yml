@@ -19,6 +19,11 @@ k3s_kube_vip_iface: enp6s18
 k3s_service_cidr: 10.43.0.0/16
 k3s_cluster_cidr: 10.42.0.0/16
 
+# k3s_proxy_env:
+#   HTTP_PROXY: ""
+#   HTTPS_PROXY: ""
+#   NO_PROXY: ""
+
 k3s_firewalld_state: enabled
 k3s_firewalld_zone: kubernetes
 

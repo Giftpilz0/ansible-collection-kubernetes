@@ -27,7 +27,7 @@ k3s_cluster_cidr: 10.42.0.0/16
 k3s_firewalld_state: enabled
 k3s_firewalld_zone: kubernetes
 
-k9s_tag: 0.32.7
+k9s_tag: 0.40.3
 fluxcli_tag: 2.4.0
-helm_tag: 3.17.0
-cilium_version: 1.16.6
+helm_tag: 3.17.1
+cilium_version: 1.17.0

@@ -43,7 +43,7 @@ spec:
               fieldPath: spec.nodeName
         - name: vip_interface
           value: "{{ k3s_kube_vip_iface }}"
-        - name: vip_cidr
+        - name: vip_subnet
           value: "{{ k3s_vip_api_endpoint | ansible.utils.ipsubnet | ansible.utils.ipaddr('prefix') }}"
         - name: dns_mode
           value: first
@@ -74,6 +74,8 @@ spec:
             add:
             - NET_ADMIN
             - NET_RAW
+            drop:
+            - ALL
       hostNetwork: true
       serviceAccountName: kube-vip
       tolerations:
@@ -82,8 +84,3 @@ spec:
       - effect: NoExecute
         operator: Exists
   updateStrategy: {}
-status:
-  currentNumberScheduled: 0
-  desiredNumberScheduled: 0
-  numberMisscheduled: 0
-  numberReady: 0

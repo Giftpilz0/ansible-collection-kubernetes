@@ -43,7 +43,7 @@ spec:
               fieldPath: spec.nodeName
         - name: vip_interface
           value: "{{ k3s_kube_vip_iface }}"
-        - name: vip_subnet
+        - name: vip_cidr
           value: "{{ k3s_vip_api_endpoint | ansible.utils.ipsubnet | ansible.utils.ipaddr('prefix') }}"
         - name: dns_mode
           value: first

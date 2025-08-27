@@ -7,7 +7,8 @@ k3s_vip_api_endpoint: "{{ hostvars[groups['k3s'][0]]['ansible_host'] | default(g
 k3s_api_port: 6443
 
 k3s_token: W7hzb52sN7wpDHv2ayzQYfLz4tH2pQvpyg3vKe2iAK577bStCuruqeftKjwkd34
-k3s_extra_server_args: --tls-san {{ k3s_vip_api_endpoint }} --flannel-backend=none --disable-network-policy --disable-helm-controller --disable metrics-server --disable servicelb --disable traefik --selinux
+k3s_extra_server_args: --tls-san {{ k3s_vip_api_endpoint }} --flannel-backend=none --disable-network-policy --disable-helm-controller --disable metrics-server
+  --disable servicelb --disable traefik --selinux
 
 k3s_service_name: k3s.service
 k3s_service_state: started
@@ -27,7 +28,7 @@ k3s_cluster_cidr: 10.42.0.0/16
 k3s_firewalld_state: enabled
 k3s_firewalld_zone: kubernetes
 
-k9s_tag: 0.50.7
-fluxcli_tag: 2.6.3
-helm_tag: 3.18.3
-cilium_version: 1.17.5
+k9s_tag: 0.50.7 # noqa: var-naming[no-role-prefix]
+fluxcli_tag: 2.6.3 # noqa: var-naming[no-role-prefix]
+helm_tag: 3.18.3 # noqa: var-naming[no-role-prefix]
+cilium_version: 1.17.5 # noqa: var-naming[no-role-prefix]

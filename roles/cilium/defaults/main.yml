@@ -1,7 +1,7 @@
 ---
 # defaults file for cilium
 
-cilium_version: 1.17.5
+cilium_version: 1.18.3
 cilium_repo_url: https://helm.cilium.io
 cilium_kubeconfig: /etc/rancher/k3s/k3s.yaml
 
